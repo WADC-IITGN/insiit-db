@@ -385,6 +385,42 @@
       "image": {
         "type": "string"
       }
+    },
+    {
+      "name": "bus_schedules",
+      "columns": {
+        "id": {
+          "type": "integer",
+          "auto_increment": true,
+          "primary_key": true,
+          "not_null": true
+        },
+        "from_location": {
+          "type": "varchar",
+          "not_null": true
+        },
+        "to_location": {
+          "type": "varchar",
+          "not_null": true
+        },
+        "departure_time": {
+          "type": "time",
+          "not_null": true
+        },
+        "via": {
+          "type": "json",
+          "json_template": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "capacity": {
+          "type": "integer",
+          "not_null": true
+        }
+      }
     }
   ]
 }
