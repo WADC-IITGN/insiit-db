@@ -387,7 +387,7 @@
       }
     },
     {
-      "name": "bus_schedules",
+      "name": "bus_schedule",
       "columns": {
         "id": {
           "type": "integer",
