@@ -633,6 +633,86 @@
       "image": {
         "type": "string"
       }
+    },
+    {
+      "name": "bus_stops",
+      "columns": {
+        "id": {
+          "type": "integer",
+          "auto_increment": true,
+          "primary_key": true,
+          "not_null": true
+        },
+        "name": {
+          "type": "varchar",
+          "not_null": true
+        },
+        "distance_from_iitgn": {
+          "type": "real",
+          "not_null": true
+        }
+      }
+    },
+    {
+      "name": "bus_schedule",
+      "columns": {
+        "id": {
+          "type": "integer",
+          "auto_increment": true,
+          "primary_key": true,
+          "not_null": true
+        },
+        "from_location": {
+          "type": "integer",
+          "not_null": true,
+          "foreign_key": true,
+          "references": {
+            "table": "bus_stops",
+            "column": "id"
+          }
+        },
+        "to_location": {
+          "type": "integer",
+          "not_null": true,
+          "foreign_key": true,
+          "references": {
+            "table": "bus_stops",
+            "column": "id"
+          }
+        },
+        "departure_time": {
+          "type": "time",
+          "not_null": true
+        },
+        "via": {
+          "type": "json",
+          "json_template": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stop": {
+                  "type": "integer",
+                  "not_null": true,
+                  "foreign_key": true,
+                  "references": {
+                    "table": "bus_stops",
+                    "column": "id"
+                  }
+                },
+                "arrival_time": {
+                  "type": "time",
+                  "not_null": true
+                }
+              }
+            }
+          }
+        },
+        "capacity": {
+          "type": "integer",
+          "not_null": true
+        }
+      }
     }
   ]
 }
